@@ -45,8 +45,8 @@ bot.on('messageReactionAdd', (reaction, user) => {
     for (const id of whitelist) {
         if(user.id.toString() == id) {
             const person = bot.users.cache.get(id);
-            reaction.message.channel.send(`${person} has reacted to a message!`);
-            reaction.message.react(reaction);
+            reaction.message.channel.send(`${person} has reacted to a message! (${reaction.emoji})`);
+            reaction.message.react(reaction.emoji);
         }
     }
 });
