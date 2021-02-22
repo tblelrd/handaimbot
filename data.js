@@ -14,6 +14,7 @@ module.exports = {
         'Try again later!',
         'its this text right here, officer',
         'pssst *ur hacking*',
+        'ea sports its in the game',
     ],
     reactions: [
         '🍆', '👌', '🤤',
@@ -21,6 +22,6 @@ module.exports = {
         '😍', '😉', '😊',
     ],
     whitelist: [
-        '496722404165550080', '207604572166815744',
+        '207604572166815744',
     ],
 };
