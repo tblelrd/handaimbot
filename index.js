@@ -1,8 +1,10 @@
 const Discord = require('discord.js');
 const http = require('http');
 const Database = require('@replit/database');
-const db = new Database();
 
+const { reactions, replies } = require('./data');
+
+const db = new Database();
 const bot = new Discord.Client();
 
 bot.once('ready', () => {
@@ -16,10 +18,8 @@ bot.on('message', async msg => {
 
     if(msg.author !== pluto) return;
 
-    msg.reply('U aimbot');
-    await msg.react('🍆');
-    await msg.react('🤤');
-    await msg.react('👌');
+    msg.reply(replies[Math.floor(Math.random() * replies.length)]);
+    await msg.react(reactions[Math.floor(Math.random() * reactions.length)]);
 });
 
 
