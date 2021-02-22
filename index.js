@@ -16,7 +16,7 @@ bot.once('ready', () => {
 bot.on('message', async msg => {
     const pluto = bot.users.cache.get('207604572166815744');
 
-    if(msg.author !== pluto) return;
+    if(msg.author !== pluto || msg.content.startsWith('??test')) return;
 
     msg.reply(replies[Math.floor(Math.random() * replies.length)]);
     await msg.react(reactions[Math.floor(Math.random() * reactions.length)]);
