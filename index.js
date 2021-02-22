@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
-const { token } = require('./config.json');
+const Database = require("@replit/database");
+const db = new Database();
 
 const bot = new Discord.Client();
 
@@ -16,4 +17,7 @@ bot.on('message', msg => {
     msg.reply('U aimbot');
 });
 
-bot.login(token);
+
+db.get('token').then(value => {
+	bot.login(value);
+});
