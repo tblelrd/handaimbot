@@ -17,11 +17,12 @@ bot.once('ready', () => {
 bot.on('message', async msg => {
 
     for (const id of whitelist) {
-        if(msg.author.id !== id && !msg.content.startsWith('??test')) return;
+        if(msg.author.id.toString() == id && !msg.content.startsWith('??test')) {
+						msg.reply(replies[Math.floor(Math.random() * replies.length)]);
+						await msg.react(reactions[Math.floor(Math.random() * reactions.length)]);
+				}
     }
 
-    msg.reply(replies[Math.floor(Math.random() * replies.length)]);
-    await msg.react(reactions[Math.floor(Math.random() * reactions.length)]);
 });
 
 
