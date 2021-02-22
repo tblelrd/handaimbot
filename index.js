@@ -16,11 +16,26 @@ bot.once('ready', () => {
 // hoovert's id = 496722404165550080
 bot.on('message', async msg => {
 
+    if(msg.author.id == 207604572166815744) {
+        if(msg.content.startsWith('??add')) {
+            const victim = msg.mentions.users.first();
+            if(!victim) return msg.reply('U need to @ someone');
+            whitelist.push(victim.id);
+            msg.reply(`${victim} has been added to the whitelist`);
+        } else if(msg.content.startsWith('?remove')) {
+            const victim = msg.mentions.users.first();
+            if(!victim) return msg.reply('U need to @ someone');
+            const i = whitelist.indexOf(victim.id);
+            if(i >= 0) whitelist.splice(i, 1);
+            msg.reply(`${victim} has been removed to the whitelist`);
+        }
+    }
+
     for (const id of whitelist) {
         if(msg.author.id.toString() == id && !msg.content.startsWith('??test')) {
-						msg.reply(replies[Math.floor(Math.random() * replies.length)]);
-						await msg.react(reactions[Math.floor(Math.random() * reactions.length)]);
-				}
+            msg.reply(replies[Math.floor(Math.random() * replies.length)]);
+            await msg.react(reactions[Math.floor(Math.random() * reactions.length)]);
+        }
     }
 
 });
