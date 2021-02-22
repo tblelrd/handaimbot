@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const http = require('http');
 const Database = require('@replit/database');
 
-const { reactions, replies } = require('./data');
+const { reactions, replies, whitelist } = require('./data');
 
 const db = new Database();
 const bot = new Discord.Client();
@@ -13,10 +13,13 @@ bot.once('ready', () => {
 });
 
 // pluto id = 207604572166815744
+// hoovert's id = 496722404165550080
 bot.on('message', async msg => {
-    const pluto = bot.users.cache.get('207604572166815744');
 
-    if(msg.author !== pluto && !msg.content.startsWith('??test')) return;
+    for (const id of whitelist) {
+        const user = bot.users.cache.get(id);
+        if(msg.author !== user && !msg.content.startsWith('??test')) return;
+    }
 
     msg.reply(replies[Math.floor(Math.random() * replies.length)]);
     await msg.react(reactions[Math.floor(Math.random() * reactions.length)]);
