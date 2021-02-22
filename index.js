@@ -22,8 +22,9 @@ bot.on('message', async msg => {
             if(!victim) return msg.reply('U need to @ someone');
             whitelist.push(victim.id);
             msg.reply(`${victim} has been added to the whitelist`);
-        } else if(msg.content.startsWith('?remove')) {
+        } else if(msg.content.startsWith('??remove')) {
             const victim = msg.mentions.users.first();
+            if(victim == msg.author) return msg.reply('You cant remove yourself!');
             if(!victim) return msg.reply('U need to @ someone');
             const i = whitelist.indexOf(victim.id);
             if(i >= 0) whitelist.splice(i, 1);
