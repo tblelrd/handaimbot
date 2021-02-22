@@ -17,8 +17,7 @@ bot.once('ready', () => {
 bot.on('message', async msg => {
 
     for (const id of whitelist) {
-        const user = bot.users.cache.get(id);
-        if(msg.author !== user && !msg.content.startsWith('??test')) return;
+        if(msg.author.id !== id && !msg.content.startsWith('??test')) return;
     }
 
     msg.reply(replies[Math.floor(Math.random() * replies.length)]);
