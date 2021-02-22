@@ -7,6 +7,7 @@ const bot = new Discord.Client();
 
 bot.once('ready', () => {
     console.log(`Logged in as ${bot.user.username}`);
+    bot.startDate = Date.now();
 });
 
 // pluto id = 207604572166815744
